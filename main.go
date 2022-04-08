@@ -1,18 +1,20 @@
 package main
 
 import (
-	"fmt"
+	"GoGinBackend/controllers"
+	"GoGinBackend/models"
 
 	"github.com/gin-gonic/gin"
 )
 
+
+
 func main()  {
+	
 	r := gin.Default()
-	r.GET("/ping",func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+
+	models.ConnectDatabase()
+	
+	r.GET("/books", controllers.FindBooks)
 	r.Run()
-	fmt.Print("Hello World")
 }
